@@ -1,0 +1,5 @@
+{
+    "sdk": "10.0.100",
+    "rollForward": "latestFeature",
+    "allowPrerelease": true
+}
