@@ -2,9 +2,16 @@
   <Folder Name="/SolutionItems/">
     <File Path=".editorconfig" />
     <File Path=".gitignore" />
+    <File Path="Directory.Packages.props" />
+    <File Path="global.json" />
+    <File Path="README.md" />
   </Folder>
   <Folder Name="/Src/">
+    <Project Path="Src/Aidn.Handler.News/Aidn.Handler.News.csproj" />
     <Project Path="Src/Aidn.NewsScore.Api/Aidn.NewsScore.Api.csproj" />
+  </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="Tests/Aidn.NewsScore.Api.Tests/Aidn.NewsScore.Api.Tests.csproj" />
   </Folder>
     
 </Solution>

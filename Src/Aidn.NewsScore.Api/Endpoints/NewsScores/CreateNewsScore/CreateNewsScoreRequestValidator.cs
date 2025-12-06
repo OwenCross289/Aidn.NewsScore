@@ -6,7 +6,8 @@ namespace Aidn.NewsScore.Api.Endpoints.NewsScores.CreateNewsScore;
 
 public sealed class CreateNewsScoreRequestValidator : Validator<CreateNewsScoreRequest>
 {
-    private static readonly HashSet<string> _requiredMeasurementTypes = ["TEMP", "HR", "RR"];
+    private static readonly HashSet<string> _requiredMeasurementTypes = NewsScoresConstants.AllMeasurementTypes;
+
     private static readonly string _measurementTypesListMessage =
         $"must contain exactly one of each of the following: {_requiredMeasurementTypes.ToValidationMessageFormat()}";
 
