@@ -4,7 +4,7 @@ using FluentValidation;
 
 namespace Aidn.NewsScore.Api.Endpoints.NewsScores.CreateNewsScore;
 
-public class CreateNewsScoreRequestValidator : Validator<CreateNewsScoreRequest>
+public sealed class CreateNewsScoreRequestValidator : Validator<CreateNewsScoreRequest>
 {
     private static readonly HashSet<string> _requiredMeasurementTypes = ["TEMP", "HR", "RR"];
     private static readonly string _measurementTypesListMessage =
@@ -50,19 +50,19 @@ public class CreateNewsScoreRequestValidator : Validator<CreateNewsScoreRequest>
             });
     }
 
-    private bool HaveNoMissingTypes(IEnumerable<Measurement> measurements)
+    private static bool HaveNoMissingTypes(IEnumerable<Measurement> measurements)
     {
         var providedTypes = measurements.Select(m => m.Type).Distinct().ToHashSet();
         return _requiredMeasurementTypes.All(required => providedTypes.Contains(required));
     }
 
-    private bool HaveNoDuplicateTypes(IEnumerable<Measurement> measurements)
+    private static bool HaveNoDuplicateTypes(IEnumerable<Measurement> measurements)
     {
         var types = measurements.Select(m => m.Type).ToList();
         return types.Count == types.Distinct().Count();
     }
 
-    private bool HaveNoUnexpectedTypes(IEnumerable<Measurement> measurements)
+    private static bool HaveNoUnexpectedTypes(IEnumerable<Measurement> measurements)
     {
         var providedTypes = measurements.Select(m => m.Type).Distinct();
         return !providedTypes.Except(_requiredMeasurementTypes).Any();
