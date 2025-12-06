@@ -3,5 +3,8 @@
     <File Path=".editorconfig" />
     <File Path=".gitignore" />
   </Folder>
+  <Folder Name="/Src/">
+    <Project Path="Src/Aidn.NewsScore.Api/Aidn.NewsScore.Api.csproj" />
+  </Folder>
     
 </Solution>
