@@ -12,6 +12,7 @@
     <Project Path="Src/Aidn.Constants/Aidn.Constants.csproj" />
   </Folder>
   <Folder Name="/Tests/">
+    <Project Path="Tests/Aidn.Api.IntegrationTests/Aidn.Api.IntegrationTests.csproj" />
     <Project Path="Tests/Aidn.Api.Tests/Aidn.Api.Tests.csproj" />
     <Project Path="Tests/Aidn.Application.Tests/Aidn.Application.Tests.csproj" />
   </Folder>
