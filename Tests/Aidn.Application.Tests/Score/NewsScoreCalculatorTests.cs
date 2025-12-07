@@ -1,5 +1,4 @@
 using Aidn.Application.Score;
-using Shouldly;
 
 namespace Aidn.Application.Tests.Score;
 
