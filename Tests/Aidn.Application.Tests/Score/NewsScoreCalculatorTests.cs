@@ -71,7 +71,7 @@ public class NewsScoreCalculatorTests
 
         result.IsT1.ShouldBeTrue();
         result.AsT1.PropertyName.ShouldBe("RR");
-        result.AsT1.Message.ShouldContain(respiratoryRate.ToString());
+        result.AsT1.Message.ShouldBe($"'RR' must be a value greater than 3 and less than or equal to 60. You input '{respiratoryRate}'");
     }
 
     [Theory]
