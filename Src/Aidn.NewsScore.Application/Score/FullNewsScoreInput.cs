@@ -1,8 +1,6 @@
-using FastEndpoints;
+namespace Aidn.NewsScore.Application.Score;
 
-namespace Aidn.Handler.News.Commands;
-
-public sealed record CreateNewsScoreCommand : ICommand<NewsScoreDto>
+public sealed record FullNewsScoreInput
 {
     public required int HeartRate { get; init; }
     public required int BodyTemperature { get; init; }

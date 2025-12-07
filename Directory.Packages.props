@@ -11,6 +11,7 @@
         <PackageVersion Include="FastEndpoints" Version="7.1.1" />
         <PackageVersion Include="FastEndpoints.Swagger" Version="7.1.1" />
         <PackageVersion Include="FastEndpoints.Messaging.Core" Version="7.1.1" />
+        <PackageVersion Include="OneOf" Version="3.0.271" />
         <PackageVersion Include="Scalar.AspNetCore" Version="2.11.1" />
     </ItemGroup>
 </Project>

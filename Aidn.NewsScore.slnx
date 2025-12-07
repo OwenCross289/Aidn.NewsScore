@@ -7,8 +7,8 @@
     <File Path="README.md" />
   </Folder>
   <Folder Name="/Src/">
-    <Project Path="Src/Aidn.Handler.News/Aidn.Handler.News.csproj" />
     <Project Path="Src/Aidn.NewsScore.Api/Aidn.NewsScore.Api.csproj" />
+    <Project Path="Src/Aidn.NewsScore.Application/Aidn.NewsScore.Application.csproj" />
   </Folder>
   <Folder Name="/Tests/">
     <Project Path="Tests/Aidn.NewsScore.Api.Tests/Aidn.NewsScore.Api.Tests.csproj" />

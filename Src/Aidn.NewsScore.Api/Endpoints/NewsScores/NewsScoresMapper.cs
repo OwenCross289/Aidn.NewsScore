@@ -1,6 +1,6 @@
-using Aidn.Handler.News;
-using Aidn.Handler.News.Commands;
 using Aidn.NewsScore.Api.Endpoints.NewsScores.CreateNewsScore;
+using Aidn.NewsScore.Application;
+using Aidn.NewsScore.Application.Score;
 
 namespace Aidn.NewsScore.Api.Endpoints.NewsScores;
 
@@ -8,11 +8,11 @@ public static class NewsScoresMapper
 {
     extension(CreateNewsScoreRequest request)
     {
-        public CreateNewsScoreCommand ToCommand()
+        public FullNewsScoreInput ToCommand()
         {
             var measurements = request.Measurements.ToDictionary(m => m.Type, m => m.Value);
 
-            return new CreateNewsScoreCommand
+            return new FullNewsScoreInput
             {
                 HeartRate = measurements.GetValueOrDefault(NewsScoresConstants.HeartRate),
                 BodyTemperature = measurements.GetValueOrDefault(NewsScoresConstants.BodyTemperature),
@@ -21,7 +21,7 @@ public static class NewsScoresMapper
         }
     }
 
-    extension(NewsScoreDto dto)
+    extension(Application.Score.NewsScore dto)
     {
         public CreateNewsScoreResponse ToResponse()
         {

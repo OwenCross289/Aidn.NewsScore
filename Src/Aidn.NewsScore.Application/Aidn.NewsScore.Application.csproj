@@ -1,5 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <ItemGroup>
-        <PackageReference Include="FastEndpoints.Messaging.Core" />
+        <PackageReference Include="OneOf" />
     </ItemGroup>
 </Project>

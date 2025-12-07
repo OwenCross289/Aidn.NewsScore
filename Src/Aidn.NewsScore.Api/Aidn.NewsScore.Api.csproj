@@ -5,6 +5,6 @@
         <PackageReference Include="Scalar.AspNetCore" />
     </ItemGroup>
     <ItemGroup>
-        <ProjectReference Include="..\Aidn.Handler.News\Aidn.Handler.News.csproj" />
+        <ProjectReference Include="..\Aidn.NewsScore.Application\Aidn.NewsScore.Application.csproj" />
     </ItemGroup>
 </Project>
