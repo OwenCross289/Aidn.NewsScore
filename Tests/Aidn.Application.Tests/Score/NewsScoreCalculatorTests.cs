@@ -218,6 +218,198 @@ public class NewsScoreCalculatorTests
 
         result.IsT1.ShouldBeTrue();
         result.AsT1.PropertyName.ShouldBe("HR");
-        result.AsT1.Message.ShouldContain(heartRate.ToString());
+        result.AsT1.Message.ShouldBe($"'HR' must be a value greater than 25 and less than or equal to 220. You input '{heartRate}'.");
+    }
+
+    [Fact]
+    public void CalculateFullScore_WhenAllInputsAreValid_ReturnsNewsScoreDto()
+    {
+        // Arrange - Using values that give known scores:
+        // HeartRate: 60 (score 0), BodyTemperature: 37 (score 0), RespiratoryRate: 15 (score 0)
+        var input = new FullNewsScoreInput
+        {
+            HeartRate = 60,
+            BodyTemperature = 37,
+            RespiratoryRate = 15,
+        };
+
+        // Act
+        var result = NewsScoreCalculator.CalculateFullScore(input);
+
+        // Assert
+        result.IsT0.ShouldBeTrue();
+        var dto = result.AsT0;
+        dto.HeartRateScore.ShouldBe(0);
+        dto.BodyTemperatureScore.ShouldBe(0);
+        dto.RespiratoryRateScore.ShouldBe(0);
+        dto.TotalScore.ShouldBe(0);
+    }
+
+    [Fact]
+    public void CalculateFullScore_WhenAllInputsHaveHighScores_ReturnsSummedTotalScore()
+    {
+        // Arrange - Using values that give high scores:
+        // HeartRate: 35 (score 3), BodyTemperature: 33 (score 3), RespiratoryRate: 5 (score 3)
+        var input = new FullNewsScoreInput
+        {
+            HeartRate = 35,
+            BodyTemperature = 33,
+            RespiratoryRate = 5,
+        };
+
+        // Act
+        var result = NewsScoreCalculator.CalculateFullScore(input);
+
+        // Assert
+        result.IsT0.ShouldBeTrue();
+        var dto = result.AsT0;
+        dto.HeartRateScore.ShouldBe(3);
+        dto.BodyTemperatureScore.ShouldBe(3);
+        dto.RespiratoryRateScore.ShouldBe(3);
+        dto.TotalScore.ShouldBe(9);
+    }
+
+    [Fact]
+    public void CalculateFullScore_WhenInputsHaveMixedScores_ReturnsCorrectTotalScore()
+    {
+        // Arrange - Using values that give different scores:
+        // HeartRate: 45 (score 1), BodyTemperature: 41 (score 2), RespiratoryRate: 22 (score 2)
+        var input = new FullNewsScoreInput
+        {
+            HeartRate = 45,
+            BodyTemperature = 41,
+            RespiratoryRate = 22,
+        };
+
+        // Act
+        var result = NewsScoreCalculator.CalculateFullScore(input);
+
+        // Assert
+        result.IsT0.ShouldBeTrue();
+        var dto = result.AsT0;
+        dto.HeartRateScore.ShouldBe(1);
+        dto.BodyTemperatureScore.ShouldBe(2);
+        dto.RespiratoryRateScore.ShouldBe(2);
+        dto.TotalScore.ShouldBe(5);
+    }
+
+    [Fact]
+    public void CalculateFullScore_WhenHeartRateIsInvalid_ReturnsError()
+    {
+        // Arrange
+        var input = new FullNewsScoreInput
+        {
+            HeartRate = 0,
+            BodyTemperature = 37,
+            RespiratoryRate = 15,
+        };
+
+        // Act
+        var result = NewsScoreCalculator.CalculateFullScore(input);
+
+        // Assert
+        result.IsT1.ShouldBeTrue();
+        var errors = result.AsT1;
+        errors.Length.ShouldBe(1);
+        errors[0].PropertyName.ShouldBe("HR");
+    }
+
+    [Fact]
+    public void CalculateFullScore_WhenBodyTemperatureIsInvalid_ReturnsError()
+    {
+        // Arrange
+        var input = new FullNewsScoreInput
+        {
+            HeartRate = 60,
+            BodyTemperature = 0,
+            RespiratoryRate = 15,
+        };
+
+        // Act
+        var result = NewsScoreCalculator.CalculateFullScore(input);
+
+        // Assert
+        result.IsT1.ShouldBeTrue();
+        var errors = result.AsT1;
+        errors.Length.ShouldBe(1);
+        errors[0].PropertyName.ShouldBe("TEMP");
+        errors[0].Message.ShouldBe("'TEMP' must be a value greater than 31 and less than or equal to 42. You input '0'.");
+    }
+
+    [Fact]
+    public void CalculateFullScore_WhenRespiratoryRateIsInvalid_ReturnsError()
+    {
+        // Arrange
+        var input = new FullNewsScoreInput
+        {
+            HeartRate = 60,
+            BodyTemperature = 37,
+            RespiratoryRate = 0,
+        };
+
+        // Act
+        var result = NewsScoreCalculator.CalculateFullScore(input);
+
+        // Assert
+        result.IsT1.ShouldBeTrue();
+        var errors = result.AsT1;
+        errors.Length.ShouldBe(1);
+        errors[0].PropertyName.ShouldBe("RR");
+        errors[0].Message.ShouldBe("'RR' must be a value greater than 3 and less than or equal to 60. You input '0'");
+    }
+
+    [Fact]
+    public void CalculateFullScore_WhenMultipleInputsAreInvalid_ReturnsAllErrors()
+    {
+        // Arrange
+        var input = new FullNewsScoreInput
+        {
+            HeartRate = 0,
+            BodyTemperature = 0,
+            RespiratoryRate = 0,
+        };
+
+        // Act
+        var result = NewsScoreCalculator.CalculateFullScore(input);
+
+        // Assert
+        result.IsT1.ShouldBeTrue();
+        var errors = result.AsT1;
+        errors.Length.ShouldBe(3);
+        errors.ShouldContain(e =>
+            e.PropertyName == "HR" && e.Message == "'HR' must be a value greater than 25 and less than or equal to 220. You input '0'."
+        );
+        errors.ShouldContain(e =>
+            e.PropertyName == "TEMP" && e.Message == "'TEMP' must be a value greater than 31 and less than or equal to 42. You input '0'."
+        );
+        errors.ShouldContain(e =>
+            e.PropertyName == "RR" && e.Message == "'RR' must be a value greater than 3 and less than or equal to 60. You input '0'"
+        );
+    }
+
+    [Fact]
+    public void CalculateFullScore_WhenTwoInputsAreInvalid_ReturnsTwoErrors()
+    {
+        // Arrange
+        var input = new FullNewsScoreInput
+        {
+            HeartRate = 0,
+            BodyTemperature = 0,
+            RespiratoryRate = 15,
+        };
+
+        // Act
+        var result = NewsScoreCalculator.CalculateFullScore(input);
+
+        // Assert
+        result.IsT1.ShouldBeTrue();
+        var errors = result.AsT1;
+        errors.Length.ShouldBe(2);
+        errors.ShouldContain(e =>
+            e.PropertyName == "HR" && e.Message == "'HR' must be a value greater than 25 and less than or equal to 220. You input '0'."
+        );
+        errors.ShouldContain(e =>
+            e.PropertyName == "TEMP" && e.Message == "'TEMP' must be a value greater than 31 and less than or equal to 42. You input '0'."
+        );
     }
 }
