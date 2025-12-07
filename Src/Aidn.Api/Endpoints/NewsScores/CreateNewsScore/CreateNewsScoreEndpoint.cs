@@ -1,3 +1,4 @@
+using Aidn.Api.Validation;
 using Aidn.Application.Score;
 using FastEndpoints;
 
@@ -16,6 +17,19 @@ public class CreateNewsScoreEndpoint : Endpoint<CreateNewsScoreRequest, CreateNe
     public override async Task HandleAsync(CreateNewsScoreRequest req, CancellationToken ct)
     {
         var result = NewsScoreCalculator.CalculateFullScore(req.ToInput());
-        await Send.OkAsync(new CreateNewsScoreResponse() { Score = 1 }, ct);
+
+        if (result.IsT1)
+        {
+            foreach (var error in result.AsT1)
+            {
+                ValidationFailures.Add(error.ToValidationFailure());
+            }
+
+            await Send.ErrorsAsync(cancellation: ct);
+        }
+        else
+        {
+            await Send.OkAsync(result.AsT0.ToResponse(), ct);
+        }
     }
 }

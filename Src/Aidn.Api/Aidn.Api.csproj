@@ -6,6 +6,5 @@
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\Aidn.Application\Aidn.Application.csproj" />
-        <ProjectReference Include="..\Aidn.NewsScore.Application\Aidn.NewsScore.Application.csproj" />
     </ItemGroup>
 </Project>
