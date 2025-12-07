@@ -10,8 +10,10 @@ public class NewsScoreCalculatorTests
     [InlineData(8, 3)]
     public void CalculateRespiratoryRateScore_WhenBetween4And8_ReturnsScore3(int respiratoryRate, int expectedScore)
     {
+        // Arrange & Act
         var result = NewsScoreCalculator.CalculateRespiratoryRateScore(respiratoryRate);
 
+        // Assert
         result.IsT0.ShouldBeTrue();
         result.AsT0.ShouldBe(expectedScore);
     }
@@ -21,8 +23,10 @@ public class NewsScoreCalculatorTests
     [InlineData(11, 1)]
     public void CalculateRespiratoryRateScore_WhenBetween9And11_ReturnsScore1(int respiratoryRate, int expectedScore)
     {
+        // Arrange & Act
         var result = NewsScoreCalculator.CalculateRespiratoryRateScore(respiratoryRate);
 
+        // Assert
         result.IsT0.ShouldBeTrue();
         result.AsT0.ShouldBe(expectedScore);
     }
@@ -32,8 +36,10 @@ public class NewsScoreCalculatorTests
     [InlineData(20, 0)]
     public void CalculateRespiratoryRateScore_WhenBetween12And20_ReturnsScore0(int respiratoryRate, int expectedScore)
     {
+        // Arrange & Act
         var result = NewsScoreCalculator.CalculateRespiratoryRateScore(respiratoryRate);
 
+        // Assert
         result.IsT0.ShouldBeTrue();
         result.AsT0.ShouldBe(expectedScore);
     }
@@ -43,8 +49,10 @@ public class NewsScoreCalculatorTests
     [InlineData(24, 2)]
     public void CalculateRespiratoryRateScore_WhenBetween21And24_ReturnsScore2(int respiratoryRate, int expectedScore)
     {
+        // Arrange & Act
         var result = NewsScoreCalculator.CalculateRespiratoryRateScore(respiratoryRate);
 
+        // Assert
         result.IsT0.ShouldBeTrue();
         result.AsT0.ShouldBe(expectedScore);
     }
@@ -54,8 +62,10 @@ public class NewsScoreCalculatorTests
     [InlineData(60, 3)]
     public void CalculateRespiratoryRateScore_WhenBetween25And60_ReturnsScore3(int respiratoryRate, int expectedScore)
     {
+        // Arrange & Act
         var result = NewsScoreCalculator.CalculateRespiratoryRateScore(respiratoryRate);
 
+        // Assert
         result.IsT0.ShouldBeTrue();
         result.AsT0.ShouldBe(expectedScore);
     }
@@ -67,8 +77,10 @@ public class NewsScoreCalculatorTests
     [InlineData(-1)]
     public void CalculateRespiratoryRateScore_WhenOutOfRange_ReturnsError(int respiratoryRate)
     {
+        // Arrange & Act
         var result = NewsScoreCalculator.CalculateRespiratoryRateScore(respiratoryRate);
 
+        // Assert
         result.IsT1.ShouldBeTrue();
         result.AsT1.PropertyName.ShouldBe("RR");
         result.AsT1.Message.ShouldBe($"'RR' must be a value greater than 3 and less than or equal to 60. You input '{respiratoryRate}'");
@@ -79,8 +91,10 @@ public class NewsScoreCalculatorTests
     [InlineData(35, 3)]
     public void CalculateBodyTemperatureScore_WhenBetween32And35_ReturnsScore3(int bodyTemperature, int expectedScore)
     {
+        // Arrange & Act
         var result = NewsScoreCalculator.CalculateBodyTemperatureScore(bodyTemperature);
 
+        // Assert
         result.IsT0.ShouldBeTrue();
         result.AsT0.ShouldBe(expectedScore);
     }
@@ -89,8 +103,10 @@ public class NewsScoreCalculatorTests
     [InlineData(36, 1)]
     public void CalculateBodyTemperatureScore_WhenBetween36And36_ReturnsScore1(int bodyTemperature, int expectedScore)
     {
+        // Arrange & Act
         var result = NewsScoreCalculator.CalculateBodyTemperatureScore(bodyTemperature);
 
+        // Assert
         result.IsT0.ShouldBeTrue();
         result.AsT0.ShouldBe(expectedScore);
     }
@@ -100,8 +116,10 @@ public class NewsScoreCalculatorTests
     [InlineData(38, 0)]
     public void CalculateBodyTemperatureScore_WhenBetween37And38_ReturnsScore0(int bodyTemperature, int expectedScore)
     {
+        // Arrange & Act
         var result = NewsScoreCalculator.CalculateBodyTemperatureScore(bodyTemperature);
 
+        // Assert
         result.IsT0.ShouldBeTrue();
         result.AsT0.ShouldBe(expectedScore);
     }
@@ -110,8 +128,10 @@ public class NewsScoreCalculatorTests
     [InlineData(39, 1)]
     public void CalculateBodyTemperatureScore_When39_ReturnsScore1(int bodyTemperature, int expectedScore)
     {
+        // Arrange & Act
         var result = NewsScoreCalculator.CalculateBodyTemperatureScore(bodyTemperature);
 
+        // Assert
         result.IsT0.ShouldBeTrue();
         result.AsT0.ShouldBe(expectedScore);
     }
@@ -121,8 +141,10 @@ public class NewsScoreCalculatorTests
     [InlineData(42, 2)]
     public void CalculateBodyTemperatureScore_WhenBetween40And42_ReturnsScore2(int bodyTemperature, int expectedScore)
     {
+        // Arrange & Act
         var result = NewsScoreCalculator.CalculateBodyTemperatureScore(bodyTemperature);
 
+        // Assert
         result.IsT0.ShouldBeTrue();
         result.AsT0.ShouldBe(expectedScore);
     }
@@ -134,8 +156,10 @@ public class NewsScoreCalculatorTests
     [InlineData(-1)]
     public void CalculateBodyTemperatureScore_WhenOutOfRange_ReturnsError(int bodyTemperature)
     {
+        // Arrange & Act
         var result = NewsScoreCalculator.CalculateBodyTemperatureScore(bodyTemperature);
 
+        // Assert
         result.IsT1.ShouldBeTrue();
         result.AsT1.PropertyName.ShouldBe("TEMP");
         result.AsT1.Message.ShouldContain(bodyTemperature.ToString());
@@ -146,8 +170,10 @@ public class NewsScoreCalculatorTests
     [InlineData(40, 3)]
     public void CalculateHeartRateScore_WhenBetween26And40_ReturnsScore3(int heartRate, int expectedScore)
     {
+        // Arrange & Act
         var result = NewsScoreCalculator.CalculateHeartRateScore(heartRate);
 
+        // Assert
         result.IsT0.ShouldBeTrue();
         result.AsT0.ShouldBe(expectedScore);
     }
@@ -157,8 +183,10 @@ public class NewsScoreCalculatorTests
     [InlineData(50, 1)]
     public void CalculateHeartRateScore_WhenBetween41And50_ReturnsScore1(int heartRate, int expectedScore)
     {
+        // Arrange & Act
         var result = NewsScoreCalculator.CalculateHeartRateScore(heartRate);
 
+        // Assert
         result.IsT0.ShouldBeTrue();
         result.AsT0.ShouldBe(expectedScore);
     }
@@ -168,8 +196,10 @@ public class NewsScoreCalculatorTests
     [InlineData(90, 0)]
     public void CalculateHeartRateScore_WhenBetween51And90_ReturnsScore0(int heartRate, int expectedScore)
     {
+        // Arrange & Act
         var result = NewsScoreCalculator.CalculateHeartRateScore(heartRate);
 
+        // Assert
         result.IsT0.ShouldBeTrue();
         result.AsT0.ShouldBe(expectedScore);
     }
@@ -179,8 +209,10 @@ public class NewsScoreCalculatorTests
     [InlineData(110, 1)]
     public void CalculateHeartRateScore_WhenBetween91And110_ReturnsScore1(int heartRate, int expectedScore)
     {
+        // Arrange & Act
         var result = NewsScoreCalculator.CalculateHeartRateScore(heartRate);
 
+        // Assert
         result.IsT0.ShouldBeTrue();
         result.AsT0.ShouldBe(expectedScore);
     }
@@ -190,8 +222,10 @@ public class NewsScoreCalculatorTests
     [InlineData(130, 2)]
     public void CalculateHeartRateScore_WhenBetween111And130_ReturnsScore2(int heartRate, int expectedScore)
     {
+        // Arrange & Act
         var result = NewsScoreCalculator.CalculateHeartRateScore(heartRate);
 
+        // Assert
         result.IsT0.ShouldBeTrue();
         result.AsT0.ShouldBe(expectedScore);
     }
@@ -201,8 +235,10 @@ public class NewsScoreCalculatorTests
     [InlineData(220, 3)]
     public void CalculateHeartRateScore_WhenBetween131And220_ReturnsScore3(int heartRate, int expectedScore)
     {
+        // Arrange & Act
         var result = NewsScoreCalculator.CalculateHeartRateScore(heartRate);
 
+        // Assert
         result.IsT0.ShouldBeTrue();
         result.AsT0.ShouldBe(expectedScore);
     }
@@ -214,8 +250,10 @@ public class NewsScoreCalculatorTests
     [InlineData(-1)]
     public void CalculateHeartRateScore_WhenOutOfRange_ReturnsError(int heartRate)
     {
+        // Arrange & Act
         var result = NewsScoreCalculator.CalculateHeartRateScore(heartRate);
 
+        // Assert
         result.IsT1.ShouldBeTrue();
         result.AsT1.PropertyName.ShouldBe("HR");
         result.AsT1.Message.ShouldBe($"'HR' must be a value greater than 25 and less than or equal to 220. You input '{heartRate}'.");
