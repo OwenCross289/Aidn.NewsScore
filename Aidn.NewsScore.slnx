@@ -9,6 +9,7 @@
   <Folder Name="/Src/">
     <Project Path="Src/Aidn.Api/Aidn.Api.csproj" />
     <Project Path="Src/Aidn.Application/Aidn.Application.csproj" />
+    <Project Path="Src/Aidn.Constants/Aidn.Constants.csproj" />
   </Folder>
   <Folder Name="/Tests/">
     <Project Path="Tests/Aidn.Api.Tests/Aidn.Api.Tests.csproj" />

@@ -1,4 +1,5 @@
 using Aidn.Application.Errors;
+using FluentValidation;
 using FluentValidation.Results;
 
 namespace Aidn.Api.Validation;
@@ -17,7 +18,13 @@ public static class ValidationExtensions
     {
         public ValidationFailure ToValidationFailure()
         {
-            return new ValidationFailure(error.PropertyName, error.Message);
+            return new ValidationFailure()
+            {
+                PropertyName = error.PropertyName,
+                ErrorMessage = error.Message,
+                ErrorCode = error.ErrorCode,
+                Severity = Severity.Error,
+            };
         }
     }
 }

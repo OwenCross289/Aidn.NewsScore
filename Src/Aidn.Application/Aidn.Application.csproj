@@ -2,4 +2,7 @@
     <ItemGroup>
         <PackageReference Include="OneOf" />
     </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Aidn.Constants\Aidn.Constants.csproj" />
+    </ItemGroup>
 </Project>

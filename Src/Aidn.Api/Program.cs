@@ -1,3 +1,4 @@
+using Aidn.Api.ProblemDetails;
 using FastEndpoints;
 using FastEndpoints.Swagger;
 using Scalar.AspNetCore;
@@ -10,7 +11,11 @@ bld.Services.AddFastEndpoints()
     });
 
 var app = bld.Build();
-app.UseFastEndpoints();
+app.UseFastEndpoints(x =>
+{
+    x.Endpoints.GlobalResponseModifier = ProblemDetailsExtensions.FailureAidnProblemDetailsResponseBuilder;
+    x.Errors.ResponseBuilder = ProblemDetailsExtensions.ValidationFailureAidnProblemDetailsResponseBuilder;
+});
 
 if (app.Environment.IsDevelopment())
 {

@@ -1,4 +1,5 @@
 using Aidn.Application.Errors;
+using Aidn.Constants;
 using OneOf;
 
 namespace Aidn.Application.Score;
@@ -60,8 +61,10 @@ public static class NewsScoreCalculator
             > 130 and <= 220 => 3,
             _ => new Error
             {
-                PropertyName = "HR",
-                Message = $"'HR' must be a value greater than 25 and less than or equal to 220. You input '{heartRate}'.",
+                PropertyName = NewsScoresConstants.Types.HeartRate,
+                Message =
+                    $"'{NewsScoresConstants.Types.HeartRate}' must be a value greater than 25 and less than or equal to 220. You input '{heartRate}'.",
+                ErrorCode = NewsScoresConstants.ErrorCodes.ValueOutOfRange,
             },
         };
     }
@@ -77,8 +80,10 @@ public static class NewsScoreCalculator
             > 39 and <= 42 => 2,
             _ => new Error
             {
-                PropertyName = "TEMP",
-                Message = $"'TEMP' must be a value greater than 31 and less than or equal to 42. You input '{bodyTemperature}'.",
+                PropertyName = NewsScoresConstants.Types.BodyTemperature,
+                Message =
+                    $"'{NewsScoresConstants.Types.BodyTemperature}' must be a value greater than 31 and less than or equal to 42. You input '{bodyTemperature}'.",
+                ErrorCode = NewsScoresConstants.ErrorCodes.ValueOutOfRange,
             },
         };
     }
@@ -94,8 +99,10 @@ public static class NewsScoreCalculator
             > 24 and <= 60 => 3,
             _ => new Error
             {
-                PropertyName = "RR",
-                Message = $"'RR' must be a value greater than 3 and less than or equal to 60. You input '{respiratoryRate}'",
+                PropertyName = NewsScoresConstants.Types.RespiratoryRate,
+                Message =
+                    $"'{NewsScoresConstants.Types.RespiratoryRate}' must be a value greater than 3 and less than or equal to 60. You input '{respiratoryRate}'",
+                ErrorCode = NewsScoresConstants.ErrorCodes.ValueOutOfRange,
             },
         };
     }

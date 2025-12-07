@@ -1,5 +1,6 @@
 using Aidn.Api.Endpoints.NewsScores.CreateNewsScore;
 using Aidn.Application.Score;
+using Aidn.Constants;
 
 namespace Aidn.Api.Endpoints.NewsScores;
 
@@ -13,9 +14,9 @@ public static class NewsScoresMapper
 
             return new FullNewsScoreInput
             {
-                HeartRate = measurements.GetValueOrDefault(NewsScoresConstants.HeartRate),
-                BodyTemperature = measurements.GetValueOrDefault(NewsScoresConstants.BodyTemperature),
-                RespiratoryRate = measurements.GetValueOrDefault(NewsScoresConstants.RespiratoryRate),
+                HeartRate = measurements.GetValueOrDefault(NewsScoresConstants.Types.HeartRate),
+                BodyTemperature = measurements.GetValueOrDefault(NewsScoresConstants.Types.BodyTemperature),
+                RespiratoryRate = measurements.GetValueOrDefault(NewsScoresConstants.Types.RespiratoryRate),
             };
         }
     }

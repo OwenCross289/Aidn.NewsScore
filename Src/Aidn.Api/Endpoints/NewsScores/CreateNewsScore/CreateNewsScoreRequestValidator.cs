@@ -1,4 +1,5 @@
 using Aidn.Api.Validation;
+using Aidn.Constants;
 using FastEndpoints;
 using FluentValidation;
 
@@ -6,7 +7,7 @@ namespace Aidn.Api.Endpoints.NewsScores.CreateNewsScore;
 
 public sealed class CreateNewsScoreRequestValidator : Validator<CreateNewsScoreRequest>
 {
-    private static readonly HashSet<string> _requiredMeasurementTypes = NewsScoresConstants.AllMeasurementTypes;
+    private static readonly HashSet<string> _requiredMeasurementTypes = NewsScoresConstants.Types.AllMeasurementTypes;
 
     private static readonly string _measurementTypesListMessage =
         $"must contain exactly one of each of the following: {_requiredMeasurementTypes.ToValidationMessageFormat()}";
@@ -20,7 +21,8 @@ public sealed class CreateNewsScoreRequestValidator : Validator<CreateNewsScoreR
                 var providedTypes = request.Measurements.Select(m => m.Type).Distinct().ToHashSet();
                 var missingTypes = _requiredMeasurementTypes.Where(required => !providedTypes.Contains(required));
                 return $"'Measurements' {_measurementTypesListMessage}. Missing type(s): {missingTypes.ToValidationMessageFormat()}";
-            });
+            })
+            .WithErrorCode(NewsScoresConstants.ErrorCodes.MissingMeasurementTypes);
 
         RuleFor(x => x.Measurements)
             .Must(HaveNoDuplicateTypes)
@@ -28,7 +30,8 @@ public sealed class CreateNewsScoreRequestValidator : Validator<CreateNewsScoreR
             {
                 var duplicateTypes = request.Measurements.GroupBy(m => m.Type).Where(g => g.Count() > 1).Select(g => g.Key);
                 return $"'Measurements' {_measurementTypesListMessage}. Duplicate type(s): {duplicateTypes.ToValidationMessageFormat()}";
-            });
+            })
+            .WithErrorCode(NewsScoresConstants.ErrorCodes.DuplicatesMeasurementTypes);
 
         RuleFor(x => x.Measurements)
             .Must(HaveNoUnexpectedTypes)
@@ -37,7 +40,8 @@ public sealed class CreateNewsScoreRequestValidator : Validator<CreateNewsScoreR
                 var providedTypes = request.Measurements.Select(m => m.Type).Distinct();
                 var unexpectedTypes = providedTypes.Except(_requiredMeasurementTypes);
                 return $"'Measurements' {_measurementTypesListMessage}. Unknown type(s): {unexpectedTypes.ToValidationMessageFormat()}";
-            });
+            })
+            .WithErrorCode(NewsScoresConstants.ErrorCodes.InvalidMeasurementTypes);
 
         RuleForEach(x => x.Measurements)
             .ChildRules(measurement =>
@@ -47,7 +51,8 @@ public sealed class CreateNewsScoreRequestValidator : Validator<CreateNewsScoreR
                     .Must(BeValidMeasurementType)
                     .WithMessage(m =>
                         $"Measurement type must be one of: {_requiredMeasurementTypes.ToValidationMessageFormat()}. You input '{m.Type}'"
-                    );
+                    )
+                    .WithErrorCode(NewsScoresConstants.ErrorCodes.InvalidMeasurementType);
             });
     }
 
