@@ -11,4 +11,8 @@
         <PackageReference Include="xunit.v3" />
         <PackageReference Include="xunit.runner.visualstudio" />
     </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\Src\Aidn.Application\Aidn.Application.csproj" />
+    </ItemGroup>
 </Project>

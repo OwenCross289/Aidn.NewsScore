@@ -1,6 +1,4 @@
-﻿using Xunit;
-
-namespace Aidn.Api.Tests;
+﻿namespace Aidn.Api.Tests;
 
 public class UnitTest1
 {
