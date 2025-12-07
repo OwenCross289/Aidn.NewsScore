@@ -1,0 +1,16 @@
+﻿{
+  Type: https://www.rfc-editor.org/rfc/rfc7231#section-6.5.1,
+  Title: Bad Request,
+  Status: 400,
+  Instance: {Scrubbed},
+  TraceId: {Scrubbed},
+  Detail: A validation failure has occurred.,
+  Errors: [
+    {
+      Name: HR,
+      Reason: 'HR' must be a value greater than 25 and less than or equal to 220. You input '25'.,
+      Code: VALUE_OUT_OF_RANGE,
+      Severity: Error
+    }
+  ]
+}

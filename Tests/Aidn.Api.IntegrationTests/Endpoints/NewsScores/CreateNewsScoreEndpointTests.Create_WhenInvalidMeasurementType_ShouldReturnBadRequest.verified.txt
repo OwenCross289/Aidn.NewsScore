@@ -1,0 +1,22 @@
+﻿{
+  Type: https://www.rfc-editor.org/rfc/rfc7231#section-6.5.1,
+  Title: Bad Request,
+  Status: 400,
+  Instance: {Scrubbed},
+  TraceId: {Scrubbed},
+  Detail: A validation failure has occurred.,
+  Errors: [
+    {
+      Name: measurements,
+      Reason: 'Measurements' must contain exactly one of each of the following: 'HR', 'RR', 'TEMP'. Unknown type(s): 'INVALID',
+      Code: INVALID_MEASUREMENT_TYPES,
+      Severity: Error
+    },
+    {
+      Name: measurements[3].type,
+      Reason: Measurement type must be one of: 'HR', 'RR', 'TEMP'. You input 'INVALID',
+      Code: INVALID_MEASUREMENT_TYPE,
+      Severity: Error
+    }
+  ]
+}

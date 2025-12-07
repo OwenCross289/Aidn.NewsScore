@@ -1,0 +1,16 @@
+﻿{
+  Type: https://www.rfc-editor.org/rfc/rfc7231#section-6.5.1,
+  Title: Bad Request,
+  Status: 400,
+  Instance: {Scrubbed},
+  TraceId: {Scrubbed},
+  Detail: A validation failure has occurred.,
+  Errors: [
+    {
+      Name: measurements,
+      Reason: 'Measurements' must contain exactly one of each of the following: 'HR', 'RR', 'TEMP'. Duplicate type(s): 'HR',
+      Code: DUPLICATE_MEASUREMENT_TYPES,
+      Severity: Error
+    }
+  ]
+}

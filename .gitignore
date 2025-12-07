@@ -6,3 +6,4 @@ riderModule.iml
 .idea/
 .vs/
 /Aidn.NewsScore.sln.DotSettings.user
+*.received.*
