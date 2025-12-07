@@ -4,7 +4,7 @@ using FluentValidation.Results;
 
 namespace Aidn.Api.Validation;
 
-public static class ValidationExtensions
+public static class ValidationMappers
 {
     extension<T>(IEnumerable<T> enumerable)
     {

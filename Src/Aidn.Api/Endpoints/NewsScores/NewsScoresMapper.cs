@@ -4,7 +4,7 @@ using Aidn.Constants;
 
 namespace Aidn.Api.Endpoints.NewsScores;
 
-public static class NewsScoresMapper
+public static class NewsScoresMappers
 {
     extension(CreateNewsScoreRequest request)
     {
