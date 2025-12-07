@@ -1,4 +1,4 @@
-namespace Aidn.NewsScore.Api.Endpoints.NewsScores;
+namespace Aidn.Api.Endpoints.NewsScores;
 
 public sealed class NewsScoresConstants
 {

@@ -1,4 +1,4 @@
-namespace Aidn.NewsScore.Api.Endpoints;
+namespace Aidn.Api.Endpoints;
 
 public static class Routes
 {

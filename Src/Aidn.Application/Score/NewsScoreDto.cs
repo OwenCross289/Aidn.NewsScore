@@ -1,6 +1,6 @@
-namespace Aidn.NewsScore.Application.Score;
+namespace Aidn.Application.Score;
 
-public sealed record NewsScore
+public sealed record NewsScoreDto
 {
     public required int TotalScore { get; init; }
     public required int HeartRateScore { get; init; }

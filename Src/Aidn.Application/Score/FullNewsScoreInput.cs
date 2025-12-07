@@ -1,4 +1,4 @@
-namespace Aidn.NewsScore.Application.Score;
+namespace Aidn.Application.Score;
 
 public sealed record FullNewsScoreInput
 {

@@ -1,4 +1,4 @@
-namespace Aidn.NewsScore.Api.Validation;
+namespace Aidn.Api.Validation;
 
 public static class ValidationExtensions
 {

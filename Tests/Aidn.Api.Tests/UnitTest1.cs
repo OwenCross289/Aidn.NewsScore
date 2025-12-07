@@ -1,9 +1,12 @@
-﻿namespace Aidn.NewsScore.Api.Tests;
+﻿using Xunit;
+
+namespace Aidn.Api.Tests;
 
 public class UnitTest1
 {
     [Fact]
     public void Test1()
     {
+        Assert.True(true);
     }
 }

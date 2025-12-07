@@ -1,4 +1,4 @@
-namespace Aidn.NewsScore.Api.Endpoints.NewsScores.CreateNewsScore;
+namespace Aidn.Api.Endpoints.NewsScores.CreateNewsScore;
 
 public sealed record CreateNewsScoreResponse
 {

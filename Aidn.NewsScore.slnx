@@ -7,11 +7,11 @@
     <File Path="README.md" />
   </Folder>
   <Folder Name="/Src/">
-    <Project Path="Src/Aidn.NewsScore.Api/Aidn.NewsScore.Api.csproj" />
-    <Project Path="Src/Aidn.NewsScore.Application/Aidn.NewsScore.Application.csproj" />
+    <Project Path="Src/Aidn.Api/Aidn.Api.csproj" />
+    <Project Path="Src/Aidn.Application/Aidn.Application.csproj" />
   </Folder>
   <Folder Name="/Tests/">
-    <Project Path="Tests/Aidn.NewsScore.Api.Tests/Aidn.NewsScore.Api.Tests.csproj" />
+    <Project Path="Tests/Aidn.Api.Tests/Aidn.Api.Tests.csproj" />
   </Folder>
     
 </Solution>

@@ -1,4 +1,4 @@
-namespace Aidn.NewsScore.Application.Errors;
+namespace Aidn.Application.Errors;
 
 public sealed record Error
 {

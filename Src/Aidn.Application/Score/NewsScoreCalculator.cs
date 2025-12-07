@@ -1,11 +1,11 @@
-using Aidn.NewsScore.Application.Errors;
+using Aidn.Application.Errors;
 using OneOf;
 
-namespace Aidn.NewsScore.Application.Score;
+namespace Aidn.Application.Score;
 
 public static class NewsScoreCalculator
 {
-    public static OneOf<NewsScore, Error[]> CalculateFullScore(FullNewsScoreInput input)
+    public static OneOf<NewsScoreDto, Error[]> CalculateFullScore(FullNewsScoreInput input)
     {
         var heartRateResult = CalculateHeartRateScore(input.HeartRate);
         var bodyTemperatureResult = CalculateBodyTemperatureScore(input.BodyTemperature);
@@ -39,7 +39,7 @@ public static class NewsScoreCalculator
 
         var totalScore = heartRateScore + bodyTemperatureScore + respiratoryRateScore;
 
-        return new NewsScore
+        return new NewsScoreDto
         {
             TotalScore = totalScore,
             HeartRateScore = heartRateScore,
@@ -95,7 +95,7 @@ public static class NewsScoreCalculator
             _ => new Error
             {
                 PropertyName = "RR",
-                Message = $"'RR' must be a value greater than 3 and less than or equal to 60. You input '{respiratoryRate}'.",
+                Message = $"'RR' must be a value greater than 3 and less than or equal to 60. You input '{respiratoryRate}'",
             },
         };
     }

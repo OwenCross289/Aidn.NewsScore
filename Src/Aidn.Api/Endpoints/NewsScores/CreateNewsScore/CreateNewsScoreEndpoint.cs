@@ -1,6 +1,7 @@
+using Aidn.Application.Score;
 using FastEndpoints;
 
-namespace Aidn.NewsScore.Api.Endpoints.NewsScores.CreateNewsScore;
+namespace Aidn.Api.Endpoints.NewsScores.CreateNewsScore;
 
 public class CreateNewsScoreEndpoint : Endpoint<CreateNewsScoreRequest, CreateNewsScoreResponse>
 {
@@ -14,6 +15,7 @@ public class CreateNewsScoreEndpoint : Endpoint<CreateNewsScoreRequest, CreateNe
 
     public override async Task HandleAsync(CreateNewsScoreRequest req, CancellationToken ct)
     {
+        var result = NewsScoreCalculator.CalculateFullScore(req.ToInput());
         await Send.OkAsync(new CreateNewsScoreResponse() { Score = 1 }, ct);
     }
 }
