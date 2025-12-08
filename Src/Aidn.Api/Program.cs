@@ -11,6 +11,8 @@ bld.Services.AddFastEndpoints()
     });
 
 var app = bld.Build();
+
+app.UseProblemDetailsExceptionHandler();
 app.UseFastEndpoints(x =>
 {
     x.Endpoints.GlobalResponseModifier = ProblemDetailsExtensions.FailureAidnProblemDetailsResponseBuilder;
